@@ -17,7 +17,7 @@ var ctx context.Context
 const (
 	ip       string = "127.0.0.1"
 	port     uint16 = 6379
-	password string = "tiantong99.c0m"
+	password string = "xxxxxx"
 )
 
 func init() {
