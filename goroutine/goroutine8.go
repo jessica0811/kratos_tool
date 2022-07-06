@@ -20,10 +20,12 @@ func Buy(n int) <-chan string {
 }
 
 func Build(in <-chan string) <-chan string {
+	fmt.Println("00000")
 	out := make(chan string)
 	go func() {
 		defer close(out)
 		for v := range in {
+			fmt.Println(v)
 			out <- fmt.Sprint("组装", v)
 		}
 	}()
@@ -31,6 +33,7 @@ func Build(in <-chan string) <-chan string {
 }
 
 func Pack(in <-chan string) <-chan string {
+	fmt.Println("=======")
 	out := make(chan string)
 	go func() {
 		defer close(out)
@@ -43,8 +46,11 @@ func Pack(in <-chan string) <-chan string {
 
 func main() {
 	accessories := Buy(6)
+	fmt.Println("11111")
 	computers := Build(accessories)
+	fmt.Println("22222")
 	packs := Pack(computers)
+	fmt.Println("33333")
 	for p := range packs {
 		fmt.Println(p)
 	}
