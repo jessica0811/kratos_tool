@@ -2,6 +2,10 @@
  * @Author: qiuhua.lin
  * @Date: 2022-07-04 08:30:29
  */
+/*
+ * @Author: qiuhua.lin
+ * @Date: 2022-07-04 08:30:29
+ */
 package main
 
 import "fmt"
@@ -13,6 +17,7 @@ func Buy(n int) <-chan string {
 	go func() {
 		defer close(out)
 		for i := 1; i <= n; i++ {
+			fmt.Println("配件：", i)
 			out <- fmt.Sprint("配件", i)
 		}
 	}()
@@ -25,8 +30,8 @@ func Build(in <-chan string) <-chan string {
 	go func() {
 		defer close(out)
 		for v := range in {
-			fmt.Println(v)
 			out <- fmt.Sprint("组装", v)
+			fmt.Println(fmt.Sprint("组装", v))
 		}
 	}()
 	return out
